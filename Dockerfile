@@ -17,7 +17,6 @@ COPY ./src/app /src/app
 
 EXPOSE 8000
 
-CMD ["/rapid_env/bin/python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 RUN adduser -D applicationuser
 USER applicationuser

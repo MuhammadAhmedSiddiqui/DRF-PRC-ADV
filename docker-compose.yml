@@ -2,13 +2,14 @@ version: "3"
 
 services:
   app:
+    container_name: ahmed-container
     user: "${UID}:${GID}"
     build:
       context: .
     ports:
-      - "8000:8000"
+      - 8000:8000
     volumes:
       - ./src/app:/src/app
     command: >
-      sh -c "python manage.py runserver"
+      sh -c "/rapid_env/bin/python manage.py runserver 0.0.0.0:8000"
 

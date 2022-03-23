@@ -1,0 +1,14 @@
+[Unit]
+Description=Rapid uWSGI Service
+After=network.target
+
+[Service]
+WorkingDirectory=/home/siddiqui/Workspace/DRF-PRC-ADV/src/app
+ExecStart=/home/siddiqui/Workspace/DRF-PRC-ADV/test_env/bin/gunicorn --access-logfile - --workers 3 --bind unix:rapid.sock app.wsgi:application
+KillSignal=SIGINT
+Type=notify
+StandardError=journal
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target

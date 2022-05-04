@@ -10,19 +10,19 @@ services:
       - 8000:8000
     volumes:
       - ./src/app:/src/app
-    # command: >
-    #   sh -c "/rapid_env/bin/python manage.py runserver 0.0.0.0:8000"
+    command: >
+      sh -c "/rapid_env/bin/python manage.py runserver 0.0.0.0:8000"
     
-  nginx:
+  # nginx:
 
-    # Instead of referencing image: nginx:mainline-alpine here, use build to
-    # reference the current directory (.), which will look for a dockerfile
-    # by default
-    build: ./etc/
-    # The external directory location to map to an internal location
-    volumes:
-      - ./src/app:/src/app
-    # The external port mapping to internal port mapping
-    ports:
-      - "81:81"
+  #   # Instead of referencing image: nginx:mainline-alpine here, use build to
+  #   # reference the current directory (.), which will look for a dockerfile
+  #   # by default
+  #   build: ./etc/
+  #   # The external directory location to map to an internal location
+  #   volumes:
+  #     - ./src/app:/src/app
+  #   # The external port mapping to internal port mapping
+  #   ports:
+  #     - "81:81"
 

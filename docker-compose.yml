@@ -11,7 +11,23 @@ services:
     volumes:
       - ./src/app:/src/app
     command: >
-      sh -c "/rapid_env/bin/python manage.py runserver 0.0.0.0:8000"
+      sh -c "/rapid_env/bin/python manage.py wait_for_db && 
+            /rapid_env/bin/python manage.py migrate &&
+            /rapid_env/bin/python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=ahmed.siddiqui
+      - DB_PASSWORD=supersecretpassword
+      - DB_NAME=app
+  
+  db:
+    image: postgres:10-alpine
+    environment:
+      - POSTGRES_USER=ahmed.siddiqui
+      - POSTGRES_PASSWORD=supersecretpassword
+      - POSTGRES_DB=app
     
   # nginx:
 

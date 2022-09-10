@@ -1,0 +1,1 @@
+from user.serializer.user_serializer import * # noqa
